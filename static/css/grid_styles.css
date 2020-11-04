@@ -1,0 +1,55 @@
+body{
+    background: black;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.wrapper {
+    height: 80vh;
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 20% 20% 20% 20% 20%
+}
+
+.box{
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: x-large;
+    text-shadow: 1px 1px 0px rgba(0,0,0,1);
+}
+
+.take{
+    background: rgb(241, 220, 96);
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.upload{
+    background: rgb(142, 241, 96);
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.settings{
+    background: rgb(241, 96, 229);
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 6;
+}
+
+.help{
+    background: rgb(241, 142, 96);
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 6;
+}

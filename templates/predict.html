@@ -1,0 +1,10 @@
+{% extends "template.html" %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<div>
+<img src="{{ filepath }}", width = 80%>
+</div>
+<span>Your  circuit is {{ prediction['label'] }} with a certainty of {{ (prediction['confidence']*100)|round(2, 'floor') }}%</span>
+{% endblock %}

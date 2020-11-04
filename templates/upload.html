@@ -1,0 +1,15 @@
+{% extends "template.html" %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<h1>Upload your picture</h1>
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <div>
+        <input type="file" name="image" id="image" accept="image/*">
+        <label for="image"></label>
+    </div>
+    <button type="submit">Upload</button>
+</form>
+{% endblock %}

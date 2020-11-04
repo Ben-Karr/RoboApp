@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<h1>Check, if your electronic circuit is correct.</h1>
+<br>
+<div class=wrapper>
+    <button class="box take">
+        <span class='text'>Take a picture</span>
+    </button>
+
+    <a href = "/upload" class="box upload">
+    <button class="box upload text">
+        <span>Upload a picture</span>
+    </button>
+    </a>
+
+    <button class="box settings">
+        <span class='text'>Settings</span>
+    </button>
+
+    <button class="box help">
+        <span class='text'>Help</span>
+    </button>
+</div>
+{% endblock %}
