@@ -14,7 +14,7 @@ app.config["IMAGE_UPLOADS"] = 'static/img'
 img_path = Path(app.config["IMAGE_UPLOADS"])
 
 # Load the trained classifier
-learn = load_learner('/models/base.pkl')
+learn = load_learner('models/base.pkl')
 # Get the classes, that have been used to train
 classes = learn.dls.vocab
 
