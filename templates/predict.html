@@ -4,7 +4,23 @@
 
 {% block content %}
 <div>
-<img src="{{ filepath }}", width = 80%>
+    <img src="{{ filepath }}" , width=80%>
 </div>
-<span>Your  circuit is {{ prediction['label'] }} with a certainty of {{ (prediction['confidence']*100)|round(2, 'floor') }}%</span>
+<span>
+    Your circuit is {{ prediction['label'] }} with a certainty of
+    {{ (prediction['confidence']*100)|round(2, 'floor') }}%
+</span>
+<div class="nav">
+    <button class="box add">
+        <span>Take an additional picture</span>
+    </button>
+
+    <button action="/" class="box home">
+        <span class='text'>Home</span>
+    </button>
+
+    <button class="box nav-help">
+        <span class='text'>Help</span>
+    </button>
+</div>
 {% endblock %}

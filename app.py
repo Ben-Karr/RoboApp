@@ -12,6 +12,7 @@ app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG"]
 app.config["IMAGE_UPLOADS"] = 'static/img'
 
 img_path = Path(app.config["IMAGE_UPLOADS"])
+ratio = 1.6
 
 # Load the trained classifier
 learn = load_learner('models/base.pkl')
@@ -63,8 +64,10 @@ def upload():
             else:
                 filename = secure_filename(image.filename)
 
-            filepath = (img_path/filename)
-            print(f'Save image to: {filepath.absolute()}')
+            filepath = os.path.join(app.config["IMAGE_UPLOADS"], filename)
+            image=PILImage.create(image).resize([int(640*ratio),640])
+
+            print(f'Save image to: {filepath}')
             image.save(filepath)
 
             prediction = predict_single(filepath)
