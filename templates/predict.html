@@ -11,12 +11,18 @@
     {{ (prediction['confidence']*100)|round(2, 'floor') }}%
 </span>
 <div class="nav">
-    <button class="box add">
+    <button class="box nav-take">
         <span>Take an additional picture</span>
     </button>
 
-    <a href = "/" class="box home">
-    <button class="box home">
+    <a href = "/upload" class="box nav-upload">
+    <button class="box nav-upload">
+        <span>Take an additional picture</span>
+    </button>
+    </a>
+
+    <a href = "/" class="box nav-home">
+    <button class="box nav-home">
         <span class='text'>Home</span>
     </button>
     </a>

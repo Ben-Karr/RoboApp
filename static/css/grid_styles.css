@@ -55,14 +55,14 @@ body{
 }
 
 .nav {
-    height: 10vh;
-    width: 80vw;
+    height: 20vh;
+    width: 80%;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: 100%
 }
 
-.add{
+.nav-take{
     background: rgb(39, 196, 175);
     grid-column-start: 1;
     grid-column-end: 2;
@@ -70,18 +70,26 @@ body{
     grid-row-end: 2;
 }
 
-.home{
-    background: rgb(97, 106, 236);
+.nav-upload{
+    background: rgb(142, 241, 96);
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
 }
 
-.nav-help{
-    background: rgb(241, 142, 96);
+.nav-home{
+    background: rgb(97, 106, 236);
     grid-column-start: 3;
     grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.nav-help{
+    background: rgb(241, 142, 96);
+    grid-column-start: 4;
+    grid-column-end: 5;
     grid-row-start: 1;
     grid-row-end: 2;
 }
