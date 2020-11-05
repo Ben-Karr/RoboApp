@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 
 from fastai.learner import load_learner
-from fastai.vision.all import PILImage, Path
+from fastai.vision.all import PILImage, Path, image2tensor
 
 import os
 
@@ -65,13 +65,14 @@ def upload():
                 filename = secure_filename(image.filename)
 
             filepath = os.path.join(app.config["IMAGE_UPLOADS"], filename)
-            image=PILImage.create(image).resize([int(640*ratio),640])
 
-            print(f'Save image to: {filepath}')
-            image.save(filepath)
+            # Save the image locally?
+            #image = PILImage.create(image)
+            #print(f'Save image to: {filepath}')
+            #image.save(filepath)
 
             prediction = predict_single(filepath)
-            print(prediction)
+            #print(prediction)
 
             return render_template("/predict.html", filepath=filepath, prediction=prediction)
 
