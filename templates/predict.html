@@ -3,9 +3,11 @@
 {% endblock %}
 
 {% block content %}
+<!--
 <div>
     <img src="{{ filepath }}" , width=80%>
 </div>
+-->
 <span>
     Your circuit is {{ prediction['label'] }} with a certainty of
     {{ (prediction['confidence']*100)|round(2, 'floor') }}%
@@ -17,7 +19,7 @@
 
     <a href = "/upload" class="box nav-upload">
     <button class="box nav-upload">
-        <span>Take an additional picture</span>
+        <span>Upload an additional picture</span>
     </button>
     </a>
 

@@ -63,18 +63,17 @@ def upload():
 
             else:
                 filename = secure_filename(image.filename)
-
+            print('a')
             filepath = os.path.join(app.config["IMAGE_UPLOADS"], filename)
+            image = PILImage.create(image)
 
-            # Save the image locally?
-            #image = PILImage.create(image)
             #print(f'Save image to: {filepath}')
             #image.save(filepath)
 
-            prediction = predict_single(filepath)
-            #print(prediction)
+            prediction = predict_single(image)
+            print(prediction)
 
-            return render_template("/predict.html", filepath=filepath, prediction=prediction)
+            return render_template("/predict.html", prediction=prediction)
 
     return render_template("/upload.html")
 
