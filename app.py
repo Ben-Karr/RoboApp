@@ -47,12 +47,13 @@ def allowed_image(filename):
 def home():
     return render_template("index.html")
 
-@app.route("/upload", methods=["GET", "POST"])
-def upload():
+@app.route("/take", methods=["GET", "POST"])
+def take():
     if request.method == "POST":
         if request.files:
+
             image = request.files["image"]
-            
+                        
             if image.filename == "":
                 print("Image must have a filename")
                 return redirect(request.url)
@@ -63,25 +64,44 @@ def upload():
 
             else:
                 filename = secure_filename(image.filename)
-            print('a')
+
             filepath = os.path.join(app.config["IMAGE_UPLOADS"], filename)
             image = PILImage.create(image)
-
-            #print(f'Save image to: {filepath}')
-            #image.save(filepath)
 
             prediction = predict_single(image)
             print(prediction)
 
-            return render_template("/predict.html", prediction=prediction)
+            return render_template("/predict.html", prediction = prediction)
+
+    return render_template("take.html")
+
+@app.route("/upload", methods=["GET", "POST"])
+def upload():
+    if request.method == "POST":
+        if request.files:
+
+            image = request.files["image"]
+                        
+            if image.filename == "":
+                print("Image must have a filename")
+                return redirect(request.url)
+
+            if not allowed_image(image.filename):
+                print("That image extension is not allowed")
+                return redirect(request.url)
+
+            else:
+                filename = secure_filename(image.filename)
+
+            filepath = os.path.join(app.config["IMAGE_UPLOADS"], filename)
+            image = PILImage.create(image)
+
+            prediction = predict_single(image)
+            print(prediction)
+
+            return render_template("/predict.html", prediction = prediction)
 
     return render_template("/upload.html")
-
-@app.route('/predict', methods=['POST', 'GET'])
-def predict():#image, prediction):
-    
-    return render_template('predict.html')#, filepath=filepath, prediction=prediction)
-
 
 if __name__ == "__main__":
     app.run(debug = True)
