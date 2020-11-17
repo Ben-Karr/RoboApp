@@ -18,6 +18,11 @@ if ( navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
 document.getElementById('snap').addEventListener('click', () => {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
+
+    video.srcObject.getTracks().forEach(function(track) {
+        track.stop();
+      });
+
     canvas.toBlob(function (blob){
         const form = new FormData();
         form.append('image', blob, 'tmp_image.png');
@@ -25,7 +30,7 @@ document.getElementById('snap').addEventListener('click', () => {
         xhr.open('POST', '/take', true);
         xhr.send(form);
     })
-    
+
     video.style.display = "none";
     document.querySelector("#snap").style.display = "none";
 })
