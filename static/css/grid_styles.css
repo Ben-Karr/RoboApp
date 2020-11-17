@@ -93,3 +93,13 @@ body{
     grid-row-start: 1;
     grid-row-end: 2;
 }
+
+video {
+    width: 1500;
+    height: 800;
+}
+
+canvas {
+    width: 1500;
+    height: 800;
+}
