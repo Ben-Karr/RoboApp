@@ -75,12 +75,14 @@ def take():
 
     return render_template("take.html")
 
+fake_pred = {'label': 'correct', 'confidence': 0.5684}
+
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     if request.method == "POST":
         if request.files:
 
-            image = request.files["image"]
+            """image = request.files["image"]
                         
             if image.filename == "":
                 print("Image must have a filename")
@@ -97,11 +99,17 @@ def upload():
             image = PILImage.create(image)
 
             prediction = predict_single(image)
-            print(prediction)
+            print(prediction)"""
 
-            return render_template("/predict.html", prediction = prediction)
+            print('test')
+            return jsonify({"render_template": "/predict.html"})
+            #return redirect("/predict")
 
     return render_template("/upload.html")
+
+@app.route("/predict", methods=["GET", "POST"])
+def predict():
+    return render_template("/predict.html", prediction = fake_pred)
 
 if __name__ == "__main__":
     app.run(debug = True)

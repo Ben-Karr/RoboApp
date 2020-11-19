@@ -8,10 +8,12 @@
     <img src="{{ filepath }}" , width=80%>
 </div>
 -->
+
 <span>
     Your circuit is {{ prediction['label'] }} with a certainty of
     {{ (prediction['confidence']*100)|round(2, 'floor') }}%
 </span>
+
 <div class="nav">
     <button class="box nav-take">
         <span>Take an additional picture</span>
