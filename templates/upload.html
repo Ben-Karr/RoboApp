@@ -3,15 +3,42 @@
 {% endblock %}
 
 {% block content %}
-<h1>Upload your picture</h1>
+<h1>Choose your picture</h1>
 
-<form action="/upload" method="POST" enctype="multipart/form-data">
+<form class='form' id='upload-form'>
     <div>
         <input type="file" name="image" id="image" accept="image/*">
-        <label for = "image"></label>
+        <label for="image"></label>
     </div>
-    <button type="submit">Upload</button>
 </form>
+<button id='upload-button'>Check picture</button>
+<canvas class="canvas" id="canvas"></canvas>
 
-<script src="../static/js/skript.js"></script>
+
+<div class="nav">
+    <!-- Remove nav-take & nav-upload -->
+    <a href="/take" class="box nav-take">
+        <button class="box nav-take">
+            <span>Take an additional picture</span>
+        </button>
+    </a>
+
+    <a href="/upload" class="box nav-upload">
+        <button class="box nav-upload">
+            <span>Upload an additional picture</span>
+        </button>
+    </a>
+
+    <a href="/" class="box nav-home">
+        <button class="box nav-home">
+            <span class='text'>Home</span>
+        </button>
+    </a>
+
+    <button class="box nav-help">
+        <span class='text'>Help</span>
+    </button>
+</div>
+
+<script src="../static/js/upload_photo.js"></script>
 {% endblock %}

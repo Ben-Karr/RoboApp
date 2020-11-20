@@ -3,9 +3,38 @@
 {% endblock %}
 
 {% block content %}
-    <video id="video" autoplay></video>
-    <button id = "snap">Take photo</button>
-    <canvas id = "canvas"></canvas>
+<h1>Take a picture of your circuit</h1>
 
-    <script src="../static/js/take_photo.js"></script>
+<video id="video" autoplay></video>
+<button id="snap">Take photo</button>
+<canvas id="canvas"></canvas>
+<button id='upload-button'>Check picture</button>
+
+<div class="nav">
+    <!-- Remove nav-take & nav-upload -->
+    <a href="/take" class="box nav-take">
+        <button class="box nav-take">
+            <span>Take an additional picture</span>
+        </button>
+    </a>
+
+    <a href="/upload" class="box nav-upload">
+        <button class="box nav-upload">
+            <span>Upload an additional picture</span>
+        </button>
+    </a>
+
+    <a href="/" class="box nav-home">
+        <button class="box nav-home">
+            <span class='text'>Home</span>
+        </button>
+    </a>
+
+    <button class="box nav-help">
+        <span class='text'>Help</span>
+    </button>
+</div>
+
+<script src="../static/js/take_photo.js"></script>
+
 {% endblock %}

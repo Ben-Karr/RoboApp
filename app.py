@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template, request, jsonify
+from flask import Flask, redirect, url_for, render_template, request, jsonify, make_response
 from werkzeug.utils import secure_filename
 
 from fastai.learner import load_learner
@@ -75,14 +75,15 @@ def take():
 
     return render_template("take.html")
 
-fake_pred = {'label': 'correct', 'confidence': 0.5684}
 
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     if request.method == "POST":
+        print("pass 1")
         if request.files:
+            print("pass 2")
 
-            """image = request.files["image"]
+            image = request.files["image"]
                         
             if image.filename == "":
                 print("Image must have a filename")
@@ -99,17 +100,47 @@ def upload():
             image = PILImage.create(image)
 
             prediction = predict_single(image)
-            print(prediction)"""
+            print(prediction)
 
-            print('test')
-            return jsonify({"render_template": "/predict.html"})
-            #return redirect("/predict")
+            return render_template("/predict.html", prediction = prediction)
 
     return render_template("/upload.html")
 
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
-    return render_template("/predict.html", prediction = fake_pred)
+    if request.method == "POST":
+        print("pass 1")
+        print(type(request),request)
+        if request.files:
+            print("pass 2")
+
+            image = request.files["image"]
+            print(image)
+                        
+            if image.filename == "":
+                print("Image must have a filename")
+                return redirect(request.url)
+
+            if not allowed_image(image.filename):
+                print("That image extension is not allowed")
+                return redirect(request.url)
+
+            else:
+                filename = secure_filename(image.filename)
+
+            filepath = os.path.join(app.config["IMAGE_UPLOADS"], filename)
+            image = PILImage.create(image)
+            print(image)
+            image.save(f'static/img/{filename}') ## to check if correct image is received
+
+            prediction = predict_single(image)
+            print(prediction)
+        print('and this?')
+        res = make_response(jsonify(prediction), 200)
+        return res
+        print('and that?')
+
+    return render_template("/predict.html")
 
 if __name__ == "__main__":
     app.run(debug = True)
