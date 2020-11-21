@@ -1,0 +1,7 @@
+{
+    "headers": {
+    "/**": {
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; img-src 'self'; font-src 'self'; style-src 'self'; frame-ancestors 'none';"
+    }
+  }
+}
