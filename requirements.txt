@@ -3,6 +3,7 @@ https://download.pytorch.org/whl/cpu/torchvision-0.8.1%2Bcpu-cp36-cp36m-linux_x8
 fastai
 Werkzeug==1.0.1
 Flask==1.1.2
+Flask-Cors
 gunicorn==20.0.4
 Jinja2==2.11.2
 ipykernel
