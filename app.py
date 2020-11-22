@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, request, jsonify, make_response
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
 from fastai.learner import load_learner
@@ -7,6 +8,7 @@ from fastai.vision.all import PILImage, Path, image2tensor
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG"]
 app.config["IMAGE_UPLOADS"] = 'static/img'
