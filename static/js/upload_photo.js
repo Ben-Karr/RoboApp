@@ -1,3 +1,5 @@
+import fetch_form from './fetch_form.js'
+
 const canvas = document.querySelector('#canvas');
 const context = canvas.getContext('2d');
 const input = document.querySelector('input[type=file]');
@@ -20,28 +22,7 @@ input.addEventListener('change', function (event) {
                     const form = new FormData();
                     form.append('image', blob, 'tmp_image.png');
 
-                    fetch(`${window.origin}/predict`, {
-                        method: "POST",
-                        body: form,
-                        })
-                    .then(function (response) {
-
-                        if (response.status !== 200) {
-                            console.log('Wrong');
-                            return
-                            }
-
-                        response.json().then(function (data) {
-                            let label = data.label;
-                            let confidence = data.confidence;
-                            let div = document.createElement('div');
-                            div.innerHTML = `<h1> Your circuit is ${label} with a certainty of ${Math.round(confidence * 1000) / 10} % </h1>`;
-                            document.body.append(div);
-                            })
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
+                    fetch_form(form);
                 })
 
                 uploadButton.remove();
