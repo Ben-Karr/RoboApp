@@ -3,9 +3,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
 from fastai.learner import load_learner
-from fastai.vision.all import PILImage, Path, image2tensor
-
-import os
+from fastai.vision.all import PILImage, Path
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
@@ -13,7 +11,6 @@ CORS(app, support_credentials=True)
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG"]
 app.config["IMAGE_UPLOADS"] = 'static/img'
 
-img_path = Path(app.config["IMAGE_UPLOADS"])
 ratio = 1.6
 
 # Load the trained classifier
@@ -76,9 +73,9 @@ def predict():
             else:
                 filename = secure_filename(image.filename)
 
-            filepath = os.path.join(app.config["IMAGE_UPLOADS"], filename)
+            filepath = Path(app.config["IMAGE_UPLOADS"]) / filename
             image = PILImage.create(image)
-            #image.save(f'static/img/{filename}') ## to check if correct image is received
+            image.save(f'static/img/{filename}') ## to check if correct image is received
 
             prediction = predict_single(image)
             print(prediction)
@@ -88,4 +85,4 @@ def predict():
     return "There was a mistake, please try again."
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run()
