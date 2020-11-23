@@ -8,7 +8,7 @@ from fastai.vision.all import PILImage, Path, image2tensor
 import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, support_credentials=True)
 
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG"]
 app.config["IMAGE_UPLOADS"] = 'static/img'
@@ -51,73 +51,19 @@ def home():
 
 @app.route("/take", methods=["GET", "POST"])
 def take():
-    if request.method == "POST":
-        if request.files:
-
-            image = request.files["image"]
-                        
-            if image.filename == "":
-                print("Image must have a filename")
-                return redirect(request.url)
-
-            if not allowed_image(image.filename):
-                print("That image extension is not allowed")
-                return redirect(request.url)
-
-            else:
-                filename = secure_filename(image.filename)
-
-            filepath = os.path.join(app.config["IMAGE_UPLOADS"], filename)
-            image = PILImage.create(image)
-
-            prediction = predict_single(image)
-            print(prediction)
-
-            return render_template("/predict.html", prediction = prediction)
-
     return render_template("take.html")
 
 
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
-    if request.method == "POST":
-        print("pass 1")
-        if request.files:
-            print("pass 2")
-
-            image = request.files["image"]
-                        
-            if image.filename == "":
-                print("Image must have a filename")
-                return redirect(request.url)
-
-            if not allowed_image(image.filename):
-                print("That image extension is not allowed")
-                return redirect(request.url)
-
-            else:
-                filename = secure_filename(image.filename)
-
-            filepath = os.path.join(app.config["IMAGE_UPLOADS"], filename)
-            image = PILImage.create(image)
-
-            prediction = predict_single(image)
-            print(prediction)
-
-            return render_template("/predict.html", prediction = prediction)
-
     return render_template("/upload.html")
 
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
     if request.method == "POST":
-        print("pass 1")
-        print(type(request),request)
         if request.files:
-            print("pass 2")
 
             image = request.files["image"]
-            print(image)
                         
             if image.filename == "":
                 print("Image must have a filename")
@@ -132,17 +78,14 @@ def predict():
 
             filepath = os.path.join(app.config["IMAGE_UPLOADS"], filename)
             image = PILImage.create(image)
-            print(image)
-            image.save(f'static/img/{filename}') ## to check if correct image is received
+            #image.save(f'static/img/{filename}') ## to check if correct image is received
 
             prediction = predict_single(image)
             print(prediction)
-        print('and this?')
         res = make_response(jsonify(prediction), 200)
         return res
-        print('and that?')
 
-    return render_template("/predict.html")
+    return "There was a mistake, please try again."
 
 if __name__ == "__main__":
     app.run(debug = True)
