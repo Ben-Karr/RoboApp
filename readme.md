@@ -9,5 +9,6 @@ By now, you can (only) upload photos of electronic circuits to classify if they 
 # To-Do #
 * Make JS functionality available on Heroku (CSP?).
 * Update the used model.
+* JS image cropper (to guarantee a certain h/w ratio).
 * Implement Help (manual / tutorial).
 * Implement Settings (choose different robotics projects / language / … ).
